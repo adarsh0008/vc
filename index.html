@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <title>Virtualicarus - Web Development & SEO Services</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <header>
         <nav>
@@ -73,7 +75,7 @@
 
     <script>
         // Add event listener to handle form submission
-        document.getElementById('contactForm').addEventListener('submit', function(event) {
+        document.getElementById('contactForm').addEventListener('submit', function (event) {
             event.preventDefault(); // Prevent the default form submission
 
             // Gather form data
@@ -93,7 +95,12 @@
             })
             .then(response => response.json())
             .then(data => {
-                alert(data.message); // Show success message from Lambda response
+                console.log('Lambda Response:', data); // Log the response from Lambda
+                if (data && data.message) {
+                    alert(data.message); // Show success message from Lambda response
+                } else {
+                    alert('Error: No message returned from the server.');
+                }
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -102,4 +109,5 @@
         });
     </script>
 </body>
+
 </html>
