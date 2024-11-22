@@ -76,47 +76,55 @@
         <p>&copy; 2024 Virtualicarus. All rights reserved.</p>
     </footer>
 
-    <script>
-        // Add event listener to handle form submission
-        document.getElementById('contactForm').addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevent the default form submission
+<script>
+    // Add event listener to handle form submission
+    document.getElementById('contactForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent the default form submission
 
-            // Gather form data
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                message: document.getElementById('message').value
-            };
+        // Gather form data
+        const formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            message: document.getElementById('message').value
+        };
 
-            // Send the data to Lambda using Fetch API
-            fetch('https://r3qyzag5lb.execute-api.eu-north-1.amazonaws.com/dev/contact', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json', // Ensure content type is JSON
-                },
-                body: JSON.stringify(formData), // Send data as JSON string
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Lambda Response:', data); // Log the response from Lambda
+        // Send the data to Lambda using Fetch API
+        fetch('https://r3qyzag5lb.execute-api.eu-north-1.amazonaws.com/dev/contact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json', // Ensure content type is JSON
+            },
+            body: JSON.stringify(formData), // Send data as JSON string
+        })
+        .then(response => response.json()) // Parse the JSON response from Lambda
+        .then(data => {
+            console.log('Lambda Response:', data); // Log the response from Lambda
 
-                const responseMessageElement = document.getElementById('responseMessage');
-                
-                if (data && data.message === "Email sent successfully!") {
+            const responseMessageElement = document.getElementById('responseMessage');
+            
+            if (data && data.body) {
+                // Parse the 'body' content from the response
+                const responseBody = JSON.parse(data.body);
+
+                if (responseBody.message === "Email sent successfully!") {
                     // Display the custom success message
                     responseMessageElement.innerHTML = `<p style="color: green;">Thanks for your message! Someone from our team will contact you shortly.</p>`;
                 } else {
-                    // Display error message if no expected response is received
-                    responseMessageElement.innerHTML = `<p style="color: red;">Error: There was an issue with your submission.</p>`;
+                    // Display error message if the message is not as expected
+                    responseMessageElement.innerHTML = `<p style="color: red;">Error: No message returned from the server.</p>`;
                 }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                const responseMessageElement = document.getElementById('responseMessage');
-                responseMessageElement.innerHTML = `<p style="color: red;">There was an error submitting the form. Please try again later.</p>`;
-            });
+            } else {
+                responseMessageElement.innerHTML = `<p style="color: red;">Error: No message returned from the server.</p>`;
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            const responseMessageElement = document.getElementById('responseMessage');
+            responseMessageElement.innerHTML = `<p style="color: red;">There was an error submitting the form. Please try again later.</p>`;
         });
-    </script>
+    });
+</script>
+
 </body>
 
 </html>
