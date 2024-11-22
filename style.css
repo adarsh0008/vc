@@ -120,6 +120,45 @@ footer {
     padding: 10px 0;
 }
 
+/* Worked Domains Section */
+#domains {
+    background-color: #fff; /* White background */
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.domain-tiles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.domain-tile {
+    background-color: #000; /* Black background for tiles */
+    color: #fff; /* White text */
+    padding: 30px 20px;
+    width: 250px;
+    border-radius: 5px;
+    text-align: center;
+    transition: transform 0.3s, background-color 0.3s; /* Smooth hover effect */
+}
+
+.domain-tile h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.domain-tile p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.domain-tile:hover {
+    background-color: #444; /* Darker background on hover */
+    transform: translateY(-10px); /* Slight lift effect */
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
     .container {
@@ -132,5 +171,9 @@ footer {
 
     .service-card {
         margin: 10px 0;
+    }
+
+    .domain-tile {
+        width: 100%;
     }
 }
