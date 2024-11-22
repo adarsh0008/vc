@@ -54,7 +54,7 @@
     <section id="contact">
         <div class="container">
             <h2>Contact Us</h2>
-            <form action="#" method="post">
+            <form id="contact-form">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
 
@@ -66,12 +66,51 @@
 
                 <button type="submit">Send Message</button>
             </form>
+            <p id="response-message" style="display:none;"></p>
         </div>
     </section>
 
     <footer>
         <p>&copy; 2024 Virtualicarus. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Handle form submission using AJAX
+        document.getElementById('contact-form').addEventListener('submit', async function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Get form data
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData.entries());  // Convert FormData to plain object
+
+            // Show loading message
+            document.getElementById('response-message').style.display = 'block';
+            document.getElementById('response-message').innerText = 'Submitting...';
+
+            try {
+                // Make the POST request to API Gateway (AWS Lambda)
+                const response = await fetch('https://r3qyzag5lb.execute-api.eu-north-1.amazonaws.com/dev/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),  // Send data as JSON
+                });
+
+                const result = await response.json(); // Parse the response
+                document.getElementById('response-message').innerText = result.message || 'Message sent successfully!';
+                document.getElementById('response-message').style.color = 'green';
+
+                // Optionally, clear form after successful submission
+                document.getElementById('contact-form').reset();
+            } catch (error) {
+                document.getElementById('response-message').innerText = 'Error submitting the form. Please try again.';
+                document.getElementById('response-message').style.color = 'red';
+                console.error('Error:', error);
+            }
+        });
+    </script>
+
 </body>
 
 </html>
