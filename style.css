@@ -18,13 +18,7 @@ header {
     color: #fff; /* White text */
     padding: 40px 0;
     text-align: center;
-    display: flex;
-    justify-content: space-between; /* Align logo to the left and nav to the right */
-    align-items: center;
-    padding-left: 20px; /* Padding on the left for logo spacing */
-    padding-right: 20px; /* Padding on the right for nav spacing */
 }
-
 header .logo a {
     color: #fff; /* White text for brand name */
     font-size: 2rem; /* Adjust font size for brand name */
@@ -32,16 +26,15 @@ header .logo a {
     text-decoration: none; /* Remove underline */
 }
 
-/* Adjust navigation */
 nav ul {
     list-style: none;
-    display: flex;
-    justify-content: center;
-    margin-top: 0;
+    text-align: center;
+    margin-top: 20px;
 }
 
 nav ul li {
-    margin-left: 20px;
+    display: inline;
+    margin-right: 20px;
 }
 
 nav ul li a {
@@ -49,7 +42,6 @@ nav ul li a {
     text-decoration: none;
     font-size: 18px;
 }
-
 
 .hero {
     padding: 60px 20px;
