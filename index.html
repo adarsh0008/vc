@@ -101,17 +101,19 @@
                 console.log('Lambda Response:', data); // Log the response from Lambda
 
                 const responseMessageElement = document.getElementById('responseMessage');
-                if (data && data.message) {
-                    // Display success message from Lambda response
-                    responseMessageElement.innerHTML = `<p style="color: green;">${data.message}</p>`;
+                
+                if (data && data.message === "Email sent successfully!") {
+                    // Display the custom success message
+                    responseMessageElement.innerHTML = `<p style="color: green;">Thanks for your message! Someone from our team will contact you shortly.</p>`;
                 } else {
-                    responseMessageElement.innerHTML = `<p style="color: red;">Error: No message returned from the server.</p>`;
+                    // Display error message if no expected response is received
+                    responseMessageElement.innerHTML = `<p style="color: red;">Error: There was an issue with your submission.</p>`;
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
                 const responseMessageElement = document.getElementById('responseMessage');
-                responseMessageElement.innerHTML = `<p style="color: red;">There was an error submitting the form.</p>`;
+                responseMessageElement.innerHTML = `<p style="color: red;">There was an error submitting the form. Please try again later.</p>`;
             });
         });
     </script>
