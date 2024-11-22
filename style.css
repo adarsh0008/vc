@@ -19,6 +19,12 @@ header {
     padding: 40px 0;
     text-align: center;
 }
+header .logo a {
+    color: #fff; /* White text for brand name */
+    font-size: 2rem; /* Adjust font size for brand name */
+    font-weight: bold; /* Make the brand name bold */
+    text-decoration: none; /* Remove underline */
+}
 
 nav ul {
     list-style: none;
