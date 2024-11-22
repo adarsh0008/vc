@@ -66,6 +66,9 @@
 
                 <button type="submit">Send Message</button>
             </form>
+
+            <!-- Message Display Area -->
+            <div id="responseMessage" style="margin-top: 20px;"></div>
         </div>
     </section>
 
@@ -96,15 +99,19 @@
             .then(response => response.json())
             .then(data => {
                 console.log('Lambda Response:', data); // Log the response from Lambda
+
+                const responseMessageElement = document.getElementById('responseMessage');
                 if (data && data.message) {
-                    alert(data.message); // Show success message from Lambda response
+                    // Display success message from Lambda response
+                    responseMessageElement.innerHTML = `<p style="color: green;">${data.message}</p>`;
                 } else {
-                    alert('Error: No message returned from the server.');
+                    responseMessageElement.innerHTML = `<p style="color: red;">Error: No message returned from the server.</p>`;
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('There was an error submitting the form.');
+                const responseMessageElement = document.getElementById('responseMessage');
+                responseMessageElement.innerHTML = `<p style="color: red;">There was an error submitting the form.</p>`;
             });
         });
     </script>
