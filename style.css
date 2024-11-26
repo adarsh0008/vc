@@ -25,6 +25,37 @@ header .logo a {
     font-weight: bold; /* Make the brand name bold */
     text-decoration: none; /* Remove underline */
 }
+/* Logo container styling */
+.logo-container {
+    position: absolute; /* Keeps the logo fixed in the top-left */
+    top: 10px; /* Distance from the top */
+    left: 10px; /* Distance from the left */
+}
+
+.logo-container img {
+    width: 153px; /* Ensures the logo size is consistent */
+    height: auto; /* Maintains the aspect ratio */
+    margin-top: -54px; /* Adjusts vertical alignment */
+    margin-left: -10px; /* Fine-tunes horizontal alignment */
+}
+
+/* Add responsiveness for smaller screens */
+@media (max-width: 768px) {
+    .logo-container img {
+        width: 120px; /* Scale down the width for smaller devices */
+        margin-top: -40px; /* Adjust vertical alignment */
+        margin-left: -8px; /* Adjust horizontal alignment */
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-container img {
+        width: 100px; /* Further reduce width for very small screens */
+        margin-top: -35px; /* Adjust vertical alignment */
+        margin-left: -5px; /* Adjust horizontal alignment */
+    }
+}
+
 
 nav ul {
     list-style: none;
