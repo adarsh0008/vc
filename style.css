@@ -35,7 +35,7 @@ header .logo a {
 .logo-container img {
     width: 153px; /* Ensures the logo size is consistent */
     height: auto; /* Maintains the aspect ratio */
-    margin-top: -54px; /* Adjusts vertical alignment */
+    margin-top: -42px; /* Adjusts vertical alignment */
     margin-left: -10px; /* Fine-tunes horizontal alignment */
 }
 
@@ -60,7 +60,7 @@ header .logo a {
 nav ul {
     list-style: none;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 0px;
 }
 
 nav ul li {
